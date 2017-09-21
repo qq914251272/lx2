@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/vue.js"></script>
+		<style type="text/css">
+			.col{
+				width: 150px;
+				height: 150px;
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="a">
+			 <input type="text" v-model="aa" />
+			 <input type="text" v-model="bb" />
+			 <button v-on:click="jh" >计算</button>
+			 <ul>
+			 	<li v-for= "rr in res" >{{rr}}</li>
+			 </ul>
+			 试着滑动滑条
+			 <input type="range" min=0 max=255 v-model="r" />
+			 <input type="range" min=0 max=255 v-model="g" />
+			 <input type="range" min=0 max=255 v-model="b" />
+			 <p class="col" v-bind:style="{background:c}"></p>
+		</div>
+		<script type="text/javascript">
+			 var ss = new Vue({
+				el:".a",
+//				template:"<div id='cc'><P>11111</p><P>22222</p></div>"
+				data:{
+					aa:0,
+					bb:0,
+					res:[],
+					r:150,
+					g:150,
+					b:0,
+					c:"yellow"
+				},
+				updated(){
+						this.c = `rgb(${this.r},${this.g},${this.b})`
+				},
+				methods:{
+					jh(){
+						this.res=[0,0,0,0];
+						this.res[0] = parseInt(this.aa)+parseInt(this.bb)
+						this.res[1] = this.aa-this.bb
+						this.res[2] = this.aa*this.bb
+						this.res[3] = this.aa/this.bb
+					}
+				}
+			})
+			
+		</script>
+	</body>
+</html>
